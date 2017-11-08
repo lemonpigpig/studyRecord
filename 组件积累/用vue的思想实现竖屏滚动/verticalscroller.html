@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A simple jQuery image viewing plugin.">
+  <meta name="keywords" content="HTML, CSS, JS, JavaScript, jQuery plugin, image viewing, front-end, frontend, web development">
+  <meta name="author" content="Fengyuan Chen">
+  <title>用vue和css实现竖屏滚动</title>
+  <style>
+      body {
+        box-sizing: border-box;
+      }
+      .scroller-content {
+        display: flex;
+      }
+      [v-cloak] {
+         display: none 
+      }
+      .title, .items-wraper{
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .items-wraper {
+        height: 24px;
+        overflow: hidden;
+        line-height: 24px;
+        position: relative;
+        flex: 1;
+      }
+      .items-content {
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        transform: translateY(100%);
+      }
+      .items-content.current-item {
+         animation: marqueeMoveIn 0.5s ease-out both;  
+      }
+      .items-content.last-item {
+        animation: marqueeMoveOut 0.5s ease-out both;
+      }
+      .item {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+        display: inline-block;
+      }
+    @keyframes marqueeMoveIn {
+        0% {
+            transform: translateY(100%);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+    @keyframes marqueeMoveOut {
+        0% {
+            transform: translateY(0);
+        }
+        100% {
+            transform: translateY(-100%);
+        }
+    }
+  </style>
+</head>
+<body>
+  <div id="app" v-cloak>
+      {{msg}}
+      <div class="scroller-wraper-out">
+          <div class="scroller-content">
+            <span class="title">最关注</span>
+            <div class="items-wraper">
+              <div class="items-content" v-for="(item, index) in items"
+                  :class="{ 'last-item' : index === lastIndex, 'current-item' : index === currentIndex }">
+                <h4 class="item">
+                  <span class="item-val" v-text="item"></span>
+                </h4>
+              </div>
+            </div>
+          </div>
+      </div>
+  </div>
+  <!-- Scripts -->
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: function() {
+        return {
+          msg: "hello",
+          items: ['我是新闻1', '我是新闻2', '我是新闻3', '我是新闻4'],
+          currentIndex: 0
+        }
+      },
+      computed: {
+        lastIndex: function() {
+          return this.currentIndex === 0 ? this.items.length-1 : this.currentIndex-1;
+        }
+      },
+      methods: {
+        go: function() {
+          if (this.currentIndex === this.items.length - 1) {
+              this.$set(this, 'currentIndex', 0);
+          } else {
+              this.$set(this, 'currentIndex', this.currentIndex + 1);
+          }
+          setTimeout(() => {
+              this.go();
+          }, 3000);
+        }
+      },
+      mounted: function() {
+        this.go();
+      }
+    })
+  </script>
+</body>
+</html>
