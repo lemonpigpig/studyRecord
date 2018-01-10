@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <style>
+        @keyframes moveon {
+          0% {
+            height: 0px;
+          }
+          25% {
+            height: 25px;
+          }
+          50% {
+            height: 50px;
+          }
+          75% {
+            height: 75px;
+          }
+          100% {
+            height: 100px;
+          }
+        }
+        .bar {
+          width: 40px;
+          height: 0px;
+          animation:moveon 4s infinite;
+          display: inline-block;
+          vertical-align: top;
+        }
+        .bar1 {
+          background: deeppink;
+          animation-delay: 0s
+        }
+        .bar2 {
+          background: lightpink;
+          animation-delay: 1s
+        }
+        .bar3 {
+          background: pink;
+          animation-delay: 2s;
+        }
+        .bar4 {
+          background: hotpink;
+          animation-delay: 3s
+        }
+    </style>
+  </head>
+  <body>
+    <div class="content_list">
+      <div class="bar bar1"></div>
+      <div class="bar bar2"></div>
+      <div class="bar bar3"></div>
+      <div class="bar bar4"></div>
+    </div>
+  </body>
+</html>
