@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>table</title>
+ <script src="https://cdn.bootcss.com/echarts/4.0.2/echarts.js"></script>
+  <script src="https://cdn.bootcss.com/vue/2.5.13/vue.min.js"></script>
+  <script src="https://cdn.bootcss.com/axios/0.17.1/axios.min.js"></script>
+  <script src="https://cdn.bootcss.com/iview/2.9.2/iview.min.js"></script>
+	
+</head>
+<body>
+  <div id="app">
+    <template v-for="item in types">
+      <input type="checkbox" :id="item.key" @change="change" v-model="item.checked">
+      <label :for="item.key">{{item.name}}</label>
+    </template>
+    <table v-if="tableData.length> 0">
+      <tbody>
+        <tr>
+            <td v-for="item in head" :colspan="item.colspan" :rowspan="item.rowspan">
+              {{item.name}}
+            </td>
+        </tr>
+        <tr>
+          <td v-for="item in col">
+              {{item.name}}
+            </td>
+        </tr>
+      </tbody>
+
+    </table>
+    <table v-if="tableData.length> 0">
+      <tr v-for="item in tableData">
+        <td><input type="checkbox" name=""  v-model="item.checked"></td>
+        <td v-for="td in tds">{{item[td['key']]}}</td>
+      </tr>
+    </table>
+  <!--   <table v-if="tableData.length> 0">
+      <tr>
+        <td rowspan="2">1</td>
+        <td rowspan="2">4</td>
+        <td colspan="3">2</td>
+         <td colspan="3">5</td>
+      </tr>
+      <tr>
+        <td>经销商</td>
+        <td>经销商2</td>
+        <td>经销商3</td>
+         <td>经销商4</td>
+         <td>经销商5</td>
+         <td>经销商6</td>
+      </tr>
+    </table> -->
+  </div>
+	<script>	
+    var Main = {
+      data () {
+          return {
+            row: 2,
+            defaultTd: [{key: 'name'}, {key: 'ds'}],
+            tds: [],
+            defaultHead: [{
+              name: '',
+              rowspan: 2,
+              colspan: 1
+            },{
+              name: '省份',
+              rowspan: 2,
+              colspan: 1
+            },{
+              name: '经销商',
+              rowspan: 2,
+              colspan: 1
+            }],
+            head: [] ,
+            col: [],
+            types: [{name:'大卖场', key: 'dmc', checked: false}, {name: '超市', key: 'cs', checked: false}],
+            tableData: [
+            ]
+          }
+      },
+      methods: {
+        change() {
+          var selected = [];
+          this.col = [];
+          this.tds = this.defaultTd;
+          this.head = this.defaultHead;
+          for(var i=0; i< this.types.length;i++) {
+            if(this.types[i].checked) {
+              switch(this.types[i].key) {
+                case 'dmc':
+                  selected.push({
+                    name: '大卖场',
+                    key: 'dmc',
+                    rowspan: 1,
+                    colspan: 3
+                  });
+                  break;
+                case 'cs':
+                  selected.push({
+                    name: '超市',
+                    key: 'cs',
+                    rowspan: 1,
+                    colspan: 3
+                  });
+                  break; 
+              }
+            }
+          }
+          if(selected.length > 0) {
+            this.head = this.head.concat(selected); 
+            console.log(selected);
+            for(var i in selected) {
+              var key = selected[i].key;
+              if(key === 'dmc') {
+                  this.tds = this.tds.concat([
+                    {key: 'mds'},{key: 'rate'},{key: 'value'}
+                  ]);
+                  this.col = this.col.concat([
+                    {
+                      name: '门店数' 
+                    }, {
+                      name: '利润率',
+                    }, {
+                      name: '利润值'
+                  }
+                ]);
+              }
+              if (key === 'cs') {
+                this.tds = this.tds.concat([
+                    {key: 'mds'},{key: 'rate'},{key: 'value'}
+                  ]);
+                this.col = this.col.concat([
+                  {
+                    name: '门店数' 
+                  }, {
+                    name: '利润率',
+                  }, {
+                    name: '利润值'
+                  }
+                ]);
+              }
+            }
+             this.tableData = [
+                {checked: false, name: '河南', ds: 'ddddd', mds: 7, rate: '2%', value: 33.2, mds: 7, rate: '2%', value: 33.2},
+                {checked: false, name: '河南', ds: '1ddddd', mds: 7, rate: '2%', value: 33.2, mds: 7, rate: '2%', value: 33.2},
+              ];
+          } else {
+            this.tableData = [];
+            this.tds = this.defaultTd;
+          }
+          
+
+          console.log(123, this.tableData, this.tds);
+        },
+      }
+    }
+    
+    var Component = Vue.extend(Main)
+    new Component().$mount('#app')
+    
+	</script>
+  <style>
+    td {
+      width: 80px;
+      text-align: center;
+      border: 1px solid gray;
+    }
+  </style>
+</body>
+</html>
