@@ -1,0 +1,64 @@
+<!doctype html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Document</title>  
+    <style type="text/css">  
+    body {  
+        font: 16px/30px sans-serif;  
+    }  
+    .box {  
+        width: 1000px;  
+        height: 500px;  
+        background: #808080;  
+        margin: 0 auto;  
+    }  
+    .item {  
+        width: 20%;  
+        height: 50%;  
+        padding: 10%;  
+        margin-left: 10%;  
+        background: orange;  
+    }  
+    .item2 {  
+        margin-left: 10%;  
+    }  
+    .item3 {  
+        margin-left: 20px;  
+    }  
+    .item4 {  
+        font-size: 200%;  
+        margin-top: 10%;  
+    }  
+    .item5 {  
+        font-size: 32px;  
+        margin-top: 10%;  
+    }  
+    .item6 {  
+        font-size: 64px;  
+        margin-top: 10%;  
+    }  
+    </style>  
+</head>  
+<body>  
+    <div class="box">  
+        <div class="item">  
+            这个页面是为了验证CSS中各种尺寸使用百分比时的参照对象是什么<br>  
+            <span class="item2">行内元素</span><br>  
+            <span class="item3">行内元素2</span>  
+            <ul class="item4">  
+                <li>块级元素3</li>  
+            </ul>  
+            <ul class="item5">  
+                <li>块级元素4</li>  
+                <ul class="item4">  
+                    <li>5</li>  
+                </ul>  
+                <ul class="item6">  
+                    <li>6</li>  
+                </ul>  
+            </ul>  
+        </div>  
+    </div>  
+</body>  
+</html> 
