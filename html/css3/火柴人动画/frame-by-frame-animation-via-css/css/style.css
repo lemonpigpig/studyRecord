@@ -1,0 +1,43 @@
+.avatar {
+  height: 200px;
+  width: 200px;
+  background: url(http://ww1.sinaimg.cn/large/67c839fajw1f2staqebnxj20nk05wjru.jpg) no-repeat 0 0;
+  /*visibility: hidden; */
+}
+
+.above:hover {
+  -webkit-animation: run .6s steps(1, end) infinite;/*默认end*/
+  /*-webkit-animation: run .6s steps(1) infinite; */ 
+}
+
+.down:hover {
+  -webkit-animation: run .6s linear infinite;
+}
+
+@keyframes run {
+  0% {
+    background-position: 0 0;
+  }
+  25% {
+    background-position: -200px 0;
+  }
+  50% {
+    background-position: -400px 0;
+  }
+  75% {
+    background-position: -600px 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+@keyframes run2 {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -800px 0;
+  }
+ 
+}

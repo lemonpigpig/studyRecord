@@ -1,0 +1,26 @@
+	.box{
+		width:100px;
+		height:100px;
+		background-color:black;
+	}
+
+	.a{
+		-webkit-animation:changeColor 4s linear infinite ;
+	}
+
+	.b{
+		-webkit-animation:changeColor 1s infinite steps(2,start); /* 将steps设置为1将只能看到第一帧关键帧的后一帧，这也是逐帧动画的实现基础*/
+	}
+	.c{
+		-webkit-animation:changeColor 1s infinite steps(2,end);
+	}
+
+	@-webkit-keyframes changeColor{
+		0%{
+			background-color:red;
+		}
+		
+		100%{
+			background-color:blue;
+		}
+	}
