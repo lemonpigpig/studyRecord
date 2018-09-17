@@ -1,0 +1,14 @@
+﻿{
+  "name": "boqii-modal",
+  "version": "1.0.3",
+  "description": "公用弹出层骨架封装",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "flower",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^2.5.17"
+  }
+}
