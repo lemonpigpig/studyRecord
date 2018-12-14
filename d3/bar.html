@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>d3 axis</title>
+  <style type="text/css">
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .axis path,
+    .axis line {
+      stroke: blue;
+    }
+
+    .axis text {
+      font-family: sans-serif;
+      font-size: 12px;
+      fill: #F00;
+    }
+  </style>
+  <script src="https://cdn.bootcss.com/d3/5.7.0/d3.js"></script>
+</head>
+
+<body>
+  <svg width="960" height="600"></svg>
+
+  <script>
+    var marge = {
+      top: 60,
+      bottom: 60,
+      left: 60,
+      right: 60
+    }
+    var svg = d3.select("svg"); //得到SVG画布
+    var width = svg.attr("width"); //得到画布的宽
+    var height = svg.attr("height"); //得到画布的长
+    var g = svg.append("g")
+      .attr("transform", "translate(" + marge.top + "," + marge.left + ")");
+
+    var dataset = [10, 20, 30, 23, 13, 40, 27, 35, 20];
+
+    var xScale = d3.scaleBand()
+      .domain(d3.range(dataset.length))
+      .rangeRound([0, width - marge.left - marge.right]);
+    var xAxis = d3.axisBottom(xScale);
+
+    var yScale = d3.scaleLinear()
+      .domain([0, d3.max(dataset)])
+      .range([height - marge.top - marge.bottom, 0]);
+    var yAxis = d3.axisLeft(yScale);
+
+    g.append("g")
+      .attr("transform", "translate(" + 0 + "," + (height - marge.top - marge.bottom) + ")")
+      .call(xAxis);
+    g.append("g")
+      .attr("transform", "translate(0,0)")
+      .call(yAxis);
+
+    // //绘制矩形和文字
+    // var gs = g.selectAll(".rect")
+    //   .data(dataset)
+    //   .enter()
+    //   .append("g");
+
+    // //绘制矩形
+    // var rectPadding = 20; //矩形之间的间隙
+    // gs.append("rect")
+    //   .attr("x", function (d, i) {
+    //     return xScale(i) + rectPadding / 2;
+    //   })
+    //   .attr("y", function (d) {
+    //     return yScale(d);
+    //   })
+    //   .attr("width", function () {
+    //     return xScale.step() - rectPadding;
+    //   })
+    //   .attr("height", function (d) {
+    //     return height - marge.top - marge.bottom - yScale(d);
+    //   })
+    //   .attr("fill", "blue");
+    // //绘制文字
+    // gs.append("text")
+    //   .attr("x", function (d, i) {
+    //     return xScale(i) + rectPadding / 2;
+    //   })
+    //   .attr("y", function (d) {
+    //     return yScale(d);
+    //   })
+    //   .attr("dx", function () {
+    //     (xScale.step() - rectPadding) / 2;
+    //   })
+    //   .attr("dy", 20)
+    //   .text(function (d) {
+    //     return d;
+    //   })
+  </script>
+</body>
+
+</html>

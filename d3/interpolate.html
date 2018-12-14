@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>d3 linear模型</title>
+  <style type="text/css">
+
+  </style>
+  <script src="https://cdn.bootcss.com/d3/5.7.0/d3.js"></script>
+</head>
+
+<body>
+  <div>
+    <div id="container">
+      <svg class="color1" style="width: 100%;"></svg>
+      <svg class="color2" style="width: 100%;"></svg>
+    </div>
+  </div>
+  <script>
+    var width = 500,
+      height = 250,
+      margin = {
+        left: 50,
+        top: 30,
+        right: 20,
+        bottom: 20
+      },
+      g_width = width - margin.left - margin.right,
+      g_height = height - margin.top - margin.bottom;
+    var svg = d3.select('#container').append('svg').attr('width', width).attr('height', height)
+    var yellow = d3.interpolateYlGn(0), // "rgb(255, 255, 229)"
+      yellowGreen = d3.interpolateYlGn(0.5), // "rgb(120, 197, 120)"
+      green = d3.interpolateYlGn(1),// "rgb(0, 69, 41)"
+      test = d3.schemeBrBG[3],
+      test1 = d3.schemeAccent,
+      blues = d3.scaleOrdinal(d3.schemeBlues[9])
+      d3.select('.color1').append('rect').attr('width', 820).attr('height', 120).attr('fill', test[0])
+      svg.append('rect').attr('width', 820).attr('height', 120).attr('fill', test[1])
+      d3.select('.color2').append('rect').attr('width', 820).attr('height', 120).attr('fill', blues(1))
+      console.log('---blues----:', typeof blues, d3.schemeBlues[9])
+  </script>
+</body>
+
+</html>
