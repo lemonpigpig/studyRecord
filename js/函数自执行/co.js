@@ -5,6 +5,7 @@ co(function*(input) {
 })
 
 function co(fn) {
+  // return a iterator
   var gen = fn()
   next()
   function next(res) {
