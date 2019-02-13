@@ -1,0 +1,21 @@
+{
+  "restartable": "rs",
+  "ignore": [""],
+  "verbose": true,
+  "execMap": {
+    "": "node",
+    "test": "gulp test"
+  },
+  "events": {
+    "start": "gulp",
+    "crash": "",
+    "exit": "",
+    "restart": "gulp"
+  },
+  "ext": "js json",
+  "watch": ["./src/**"],
+  "env": {
+    "NODE_ENV": "env"
+  },
+  "legacy-watch": false
+}

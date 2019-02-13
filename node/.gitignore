@@ -1,0 +1,11 @@
+﻿.DS_Store
+node_modules/
+dist/
+/temp
+/boqii.qiniu.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.lavas/
+.nyc_output
+template.tar.gz
