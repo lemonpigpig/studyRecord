@@ -22,11 +22,66 @@
         margin-left: 100px;
         margin-top: 100px;
     }  
-  
+    .test1 .abs{
+        position: absolute;
+        border: 1px solid red
+    }
+    .test2 {
+        color: red;
+        border: 1px solid yellow;
+        /*margin-top: 50px;*/
+    }
+    .test2 .abs {
+        position: absolute;
+    }
+    .span {
+        width: 100%;
+        height: 50px;
+    }
     </style>  
 </head>  
 <body>  
-    <div class="box">
+    <div class="test1">
+        <h2>postion:absolute 不设置top，bottom，left，right</h2>
+        <div class="abs">
+            postion:absolute不设置div的宽高
+        </div>
+    </div>
+    <div class="test2">
+        <h2>span postion:absolute 不设置top，bottom，left，right</h2>
+        <span class="abs span">
+            postion:absolute设置span的宽高(inline-block)
+        </span>
+    </div>
+    <div>
+
+        我是一个普通的div 啦啦啦啦啦啦啦，我发现哈absolute定位如果不设置top，left等的值，那么他就会停在原来位置（但是实际上是脱离了文档流，z-index上升），会影响后面的元素，也就是覆盖
+    </div>
+    <div>
+        如果设置了top，left等的值，那么就按照包含快，选择参照位置
+    </div>
+    <h1>-----------------华丽的分割线测试relative----------------------</h1>
+    <div class="test3">
+        before text
+        <div style="position: relative;">
+            我是test3下面的relative定位的div元素，我现在不设置top，left等的值，我看看自己以及自己对后面的元素有啥影响
+        
+        </div>
+        after text
+    </div>
+    <div class="test4">
+        before text
+        <div style="position: relative;top:64px;">
+            我是test4下面的relative定位的div元素，我现在设置top，left等的值，我看看自己以及自己对后面的元素有啥影响
+            我发现原来的位置并没有被顶上去，还在的，而且z-index比普通定位的层级高，但是如果后面的元素也是relative
+            /absolute定位那么后面的z-index会大于前面的
+        </div>
+        <span style="background: red">
+            after text
+        </span>
+        
+    </div>
+    <!--<div class="box">
            <div>  新增测试</div>
            <div>
                <ul>
@@ -39,6 +94,6 @@
                </ul>
            </div> 
 
-       </div>  
+       </div>  -->
 </body>  
 </html> 

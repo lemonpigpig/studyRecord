@@ -1,0 +1,66 @@
+<html>
+    <script src="quicksort.js"></script>
+
+    <body>
+        <div>
+            <input type="text" placeholder="请输入文字" id="input">
+        </div>
+        open console.
+        <div style="height: 400px;background: red"></div>
+        <div style="height: 400px;background: pink"></div>
+        <div style="height: 400px;background: blue"></div>
+        <div style="height: 500px;background: yellow"></div>
+        <div style="height: 500px;background: gray"></div>
+    </body>
+    <script src="https://cdn.bootcss.com/lodash.js/4.17.11/lodash.min.js"></script>
+    <script>
+        let debounce = function(func, wait, immediate) {
+            var timeout, args, context, timestamp, result;
+
+            var later = function() {
+                // 据上一次触发时间间隔
+                var last = new Date().getTime() - timestamp;
+                console.log('--later----')
+                    // 上次被包装函数被调用时间间隔last小于设定时间间隔wait
+                if (last < wait && last > 0) {
+                    timeout = setTimeout(later, wait - last);
+                } else {
+                    console.log('-----call fun----')
+                    timeout = null;
+                    // 如果设定为immediate===true，因为开始边界已经调用过了此处无需调用
+                    if (!immediate) {
+                        result = func.apply(context, args);
+                        if (!timeout) context = args = null;
+                    }
+                }
+            };
+
+            return function() {
+                context = this;
+                args = arguments;
+                timestamp = new Date().getTime();
+                var callNow = immediate && !timeout;
+                // 如果延时不存在，重新设定延时
+                console.log('---timeout---:', timeout)
+                if (!timeout)
+                    timeout = setTimeout(later, wait);
+                if (callNow) {
+                    result = func.apply(context, args);
+                    context = args = null;
+                }
+
+                return result;
+            };
+        };
+
+        function test() {
+            console.log(23)
+        }
+        document.getElementById("input").addEventListener('keydown', debounce(test, 2000))
+            // document.addEventListener('scroll', debounce(test))
+    </script>
+    <script>
+        // console.log('_.chunk', _.debounce)
+    </script>
+
+</html>

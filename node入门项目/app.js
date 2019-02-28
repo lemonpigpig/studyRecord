@@ -4,26 +4,25 @@ var favicon = require('serve-favicon')
 var path = require('path')
 
 
-var _favicon = favicon(path.join(__dirname, 'favicon.ico'))
-console.log("_favicon:", __dirname);
+// var _favicon = favicon(path.join(__dirname, 'favicon.ico'))
+// console.log("_favicon:", _favicon);
 
 var server = http.createServer(function(req, res){
     //每个页面默认都会再发一个/favicon.ico
     console.log("接受到了客服端的请求:", req.url);
     const ip = res.socket.remoteAddress;
     const port = res.socket.remotePort;
-    _favicon(req, res, function onNext (err) {
-        // if (err) return done(err)
+//     _favicon(req, res, function onNext (err) {
+//         // if (err) return done(err)
     
-        // continue to process the request here, etc.
+//         // continue to process the request here, etc.
     
-        // res.statusCode = 404
-        // res.end('oops')
-  })
+//         // res.statusCode = 404
+//         // res.end('oops')
+//   })
 
     var html = "<html><head><title>node--------</title>\
-        <link rel=\"shortcut icon\" href=\"/favicon.ico\" />\
-    </head><div>hello World</div></html>"
+    </head><div>hello World1</div></html>"
     if(req.url!=='/favicon.ico') {
         res.writeHeader(200, {'Content-Type':'text/html;charset=UTF-8'})
         res.write(html);
