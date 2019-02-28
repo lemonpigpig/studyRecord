@@ -1,0 +1,38 @@
+{
+  "name": "boqii_activity",
+  "version": "1.0.0",
+  "versionCode": "10000",
+  "build": 1,
+  "description": "波奇周年庆红包雨活动",
+  "author": "lemon",
+  "private": true,
+  "scripts": {
+    "babel": "babel",
+    "build": "babel src -d build",
+    "class": "babel --plugins transform-es2015-classes src/clazz.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.6",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-decorators": "^6.24.1",
+    "babel-plugin-transform-es2015-classes": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-stage-0": "^6.24.1"
+  },
+  "engines": {
+    "node": ">= 4.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 5 versions",
+    "not ie <= 8",
+    "ios >= 6",
+    "safari >= 6"
+  ]
+}

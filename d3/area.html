@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>d3 linear模型</title>
+  <style type="text/css">
+
+  </style>
+  <script src="https://cdn.bootcss.com/d3/5.7.0/d3.js"></script>
+</head>
+
+<body>
+  <div>
+    <div id="container"></div>
+  </div>
+  <script>
+    var width = 500,
+      height = 250,
+      margin = {
+        left: 50,
+        top: 30,
+        right: 20,
+        bottom: 20
+      },
+      g_width = width - margin.left - margin.right,
+      g_height = height - margin.top - margin.bottom;
+    var svg = d3.select('#container').append('svg').attr('width', width).attr('height', height)
+    var g = d3.select('svg').append('g')
+    var data = [1, 2, 4, 8, 3, 2, 5];
+    // 缩放函数，X轴线性缩放
+    var x = d3.scaleLinear()
+      .domain([0, data.length - 1]) // 输入范围
+      .range([0, g_width]); //输出范围
+    //Y轴缩放函数
+    var y = d3.scaleLinear()
+      .domain([0, 10])
+      .range([g_height, 0]); //倒着写是为了让纵坐标在显示的时候是从下往上增大的（因为浏览器的左边原点在左上而数学习惯是在左下）
+    var area = d3.area()
+      .x(function (d, i) {
+        return x(i);
+      })
+      .y1(function (d) {
+        return y(d);
+      })
+      .y0(y(0))
+      .curve(d3.curveCatmullRom.alpha(.5));
+
+    // 当页面有多个相同元素，select只能选择符合条件的第一个元素，想要选择其中某一个指定的元素，可以把那个元素赋给一个变量，然后使用变量名去实现
+    // 如下所示，g表示上面赋值的那个变量g,而不是标签<g></g>
+    g.append("path").attr("d", area(data))
+  </script>
+</body>
+
+</html>

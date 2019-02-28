@@ -1,0 +1,35 @@
+<html>
+  <div><div id="div">begin</div></div>
+  <script>
+    setTimeout(() => {
+      Promise.resolve().then(() => {
+        let text = document.getElementById('div')
+        text.innerHTML = '改变后的'
+        console.log('123')
+      })
+      console.log('没有改变呢')
+    }, 1000)
+  </script>
+  <!-- <script>
+    setTimeout(function() {
+      // 应该是这里执行前开始渲染ui，试试用alert阻塞下。
+      alert(' ui 已经渲染完毕了吗？ ')
+      console.log('timeout1')
+    }, 2000)
+
+    new Promise(function(resolve) {
+      console.log('promise1')
+      for (var i = 0; i < 1000; i++) {
+        i == 99 && resolve()
+      }
+      console.log('promise2')
+    }).then(function() {
+      console.log('then1')
+      alert(' ui 开始渲染 ')
+    })
+
+    console.log('global1')
+
+    div.innerHTML = 'end'
+  </script> -->
+</html>

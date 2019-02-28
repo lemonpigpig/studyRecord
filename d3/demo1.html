@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>d3简单的使用习惯和方法</title>
+  <style type="text/css">
+
+  </style>
+  <script src="https://cdn.bootcss.com/d3/5.7.0/d3.js"></script>
+</head>
+
+<body>
+  <div class="box">
+    <p>p1</p>
+    <p>p2</p>
+    <p>p3</p>
+  </div>
+  <div class="box1">
+    <p>p1</p>
+    <p>p2</p>
+    <p>p3</p>
+  </div>
+  <div class="box2">
+    <p>p1</p>
+    <p>p2</p>
+    <p>p3</p>
+  </div>
+  <div>
+    <svg style="height: 500px;"></svg>
+  </div>
+  <script>
+    function colorOneP() {
+      d3.select(".box > p").style("color", 'blue')
+    }
+
+    function colorAllP() {
+      d3.selectAll(".box1 > p").style("color", 'red')
+    }
+    let data = [14, 18, 15, 16, 23, 42]
+    let circleData = [{
+      "x": 100.0,
+      "y": 100
+    }, {
+      "x": 200,
+      "y": 200
+    }]
+
+    function colorAllRandom() {
+      d3.selectAll(".box2 > p")
+        .data(data)
+        .style("font-size", function (d) {
+          return d + "px";
+        });
+    }
+
+    function enterSvg() {
+      let svg = d3.select('svg')
+      console.log('svg.selectAll("circle"):', d3.select('svg').selectAll("circle"))
+      // bad way
+      // d3.select('svg').append('circle').attr("cx", 120)
+      //   .attr("cy", 120)
+      //   .attr("r", 25)
+      //   .attr("fill", 'red');
+      // good way
+      svg.selectAll("circle")
+        .data(circleData)
+        .enter().append("circle")
+        .attr("cx", function (d) {
+          return d.x;
+        })
+        .attr("cy", function (d) {
+          return d.y;
+        })
+        .attr("r", 25)
+        .attr("fill", 'pink');
+
+    }
+
+    function enterSvgByAnimation() {
+      let svg = d3.select('svg')
+      let circle = svg.selectAll("circle")
+        .data(circleData)
+      circle.enter().append("circle")
+        .attr("r", 0)
+        .transition()
+        .attr("r", 25)
+        .attr("cx", function (d) {
+          return d.x;
+        })
+        .attr("cy", function (d) {
+          return d.y;
+        });
+    }
+
+    function exitSvgByAnimation() {
+      let data = [{
+        "x": 100.0,
+        "y": 100
+      }]
+      let svg = d3.select('svg')
+      let circle = svg.selectAll("circle")
+        .data(data)
+      circle.exit().transition()
+        .attr("r", 0)
+        .remove();
+
+    }
+
+    colorOneP()
+    colorAllP()
+    colorAllRandom()
+    // enterSvg()
+    enterSvgByAnimation()
+    setTimeout(() => {
+      exitSvgByAnimation()
+    }, 1000);
+
+    console.log(d3.select('svg'))
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "mock-server",
+  "version": "1.0.0",
+  "description": "使用node搭建前端数据mock服务",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node index.js"
+  },
+  "keywords": [
+    "node",
+    "loaddb",
+    "express"
+  ],
+  "author": "lemon.he",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "lowdb": "^1.0.0",
+    "shortid": "^2.2.14"
+  },
+  "devDependencies": {}
+}
